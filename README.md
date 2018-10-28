@@ -5,7 +5,7 @@
 To create a new Serverless project.
 
 ``` bash
-$ serverless install --url https://github.com/AnomalyInnovations/serverless-nodejs-starter --name my-project
+$ serverless install --url https://github.com/navjotbola/281-project1-lambda --name my-project
 ```
 
 Enter the new directory
