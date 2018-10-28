@@ -67,7 +67,7 @@ Resources:
                   - Fn::Join:
                     - ''
                     -
-                      - Fn::GetAtt: [AttachmentsBucket, Arn]
+                      - Fn::GetAtt: [LockerUploadsBucket, Arn]
                       - '/private/'
                       - '$'
                       - '{cognito-identity.amazonaws.com:sub}/*'
