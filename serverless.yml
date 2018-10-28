@@ -1,4 +1,4 @@
-service: 281-project1-api
+service: locker-app-api
 
 plugins:
   - serverless-webpack
