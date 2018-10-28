@@ -14,6 +14,7 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
 
 provider:
   name: aws
@@ -21,21 +22,21 @@ provider:
   stage: dev
   region: us-east-2
 
-environment:
-  tableName: dev-locker
+  environment:
+    tableName: ${self:custom.tableName}
 
-iamRoleStatements:
-  - Effect: Allow
-    Action:
-      - dynamodb:DescribeTable
-      - dynamodb:Query
-      - dynamodb:Scan
-      - dynamodb:GetItem
-      - dynamodb:PutItem
-      - dynamodb:UpdateItem
-      - dynamodb:DeleteItem
-    Resource:
-      - "Fn::GetAtt": [ LockerTable, Arn ]
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "Fn::GetAtt": [ LockerTable, Arn ]
 
 functions:
   addFile:
@@ -47,37 +48,37 @@ functions:
           cors: true
           authorizer: aws_iam
   getFile:
-      handler: getFile.main
-      events:
-        - http:
-            path: files/{id}
-            method: get
-            cors: true
-            authorizer: aws_iam
+    handler: getFile.main
+    events:
+      - http:
+          path: files/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
   allFiles:
-      handler: allFiles.main
-      events:
-        - http:
-            path: files/
-            method: get
-            cors: true
-            authorizer: aws_iam
+    handler: allFiles.main
+    events:
+      - http:
+          path: files/
+          method: get
+          cors: true
+          authorizer: aws_iam
   editFile:
-      handler: editFile.main
-      events:
-        - http:
-            path: files/{id}
-            method: put
-            cors: true
-            authorizer: aws_iam
+    handler: editFile.main
+    events:
+      - http:
+          path: files/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
   deleteFile:
-      handler: deleteFile.main
-      events:
-        - http:
-            path: files/{id}
-            method: delete
-            cors: true
-            authorizer: aws_iam
+    handler: deleteFile.main
+    events:
+      - http:
+          path: files/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
 
 resources:
   - ${file(definitions/dynamo.yml)}

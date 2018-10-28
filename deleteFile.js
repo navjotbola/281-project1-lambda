@@ -3,7 +3,7 @@ import { success, failure } from "./utils/response-lib";
 
 export async function main(event, context, callback) {
     const params = {
-        TableName: "dev-locker",
+        TableName: process.env.tableName,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
             fileId: event.pathParameters.id
