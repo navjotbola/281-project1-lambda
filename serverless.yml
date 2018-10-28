@@ -38,40 +38,40 @@ iamRoleStatements:
       - "Fn::GetAtt": [ LockerTable, Arn ]
 
 functions:
-  create:
-    handler: create.main
+  addFile:
+    handler: addFile.main
     events:
       - http:
           path: files
           method: post
           cors: true
           authorizer: aws_iam
-  get:
-      handler: get.main
+  getFile:
+      handler: getFile.main
       events:
         - http:
             path: files/{id}
             method: get
             cors: true
             authorizer: aws_iam
-  list:
-      handler: list.main
+  allFiles:
+      handler: allFiles.main
       events:
         - http:
             path: files/
             method: get
             cors: true
             authorizer: aws_iam
-  update:
-      handler: update.main
+  editFile:
+      handler: editFile.main
       events:
         - http:
             path: files/{id}
             method: put
             cors: true
             authorizer: aws_iam
-  delete:
-      handler: delete.main
+  deleteFile:
+      handler: deleteFile.main
       events:
         - http:
             path: files/{id}
@@ -83,3 +83,4 @@ resources:
   - ${file(definitions/dynamo.yml)}
   - ${file(definitions/s3.yml)}
   - ${file(definitions/cognito.yml)}
+  - ${file(definitions/cognito-identity.yml)}

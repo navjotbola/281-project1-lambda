@@ -6,7 +6,7 @@ export async function main(event, context, callback) {
     const data = JSON.parse(event.body);
     const creationDate = Date.now();
     const params = {
-        TableName: "fileStorage",
+        TableName: process.env.tableName,
         Item: {
             userId: event.requestContext.identity.cognitoIdentityId,
             fileId: uuid.v1(),
