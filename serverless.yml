@@ -22,7 +22,7 @@ provider:
   region: us-east-2
 
 environment:
-  tableName: ${self:custom.tableName}
+  tableName: dev-locker
 
 iamRoleStatements:
   - Effect: Allow
