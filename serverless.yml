@@ -80,4 +80,6 @@ functions:
             authorizer: aws_iam
 
 resources:
-  -  ${file(resources/dynamodb-table.yml)}
+  - ${file(definitions/dynamo.yml)}
+  - ${file(definitions/s3.yml)}
+  - ${file(definitions/cognito.yml)}
