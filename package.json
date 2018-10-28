@@ -32,6 +32,7 @@
   "scripts": {
     "test": "jest",
     "clean": "rm -rf node_modules && rm -rf src/node_modules",
-    "deploy": "./node_modules/.bin/serverless deploy"
+    "deploy": "./node_modules/.bin/serverless deploy",
+    "deploy-prod": "./node_modules/.bin/serverless deploy --stage prod"
   }
 }
