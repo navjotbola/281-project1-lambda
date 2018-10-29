@@ -79,6 +79,14 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  allFilesAdmin:
+    handler: allFilesAdmin.main
+    events:
+      - http:
+          path: admin/
+          method: get
+          cors: true
+          authorizer: aws_iam
 
 resources:
   - ${file(definitions/dynamo.yml)}
