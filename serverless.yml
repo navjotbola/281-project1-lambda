@@ -91,16 +91,8 @@ functions:
     handler: deleteFileAdmin.main
     events:
       - http:
-          path: admin/files/{id}
+          path: admin/{id}
           method: delete
-          cors: true
-          authorizer: aws_iam
-  getFileAdmin:
-    handler: getFileAdmin.main
-    events:
-      - http:
-          path: admin/files/{id}
-          method: get
           cors: true
           authorizer: aws_iam
 
